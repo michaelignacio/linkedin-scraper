@@ -1,6 +1,6 @@
 let profiles = [];
 let processing = false;
-const DEFAULT_DELAY = 5000; // 5 seconds
+const DEFAULT_DELAY = 10000; // 10 seconds
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "storeProfile") {
@@ -39,5 +39,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     processNextUrl();
     sendResponse({ message: "Started processing URLs" });
+  } else if (message.action === "clearProfiles") {
+    profiles = [];
+    sendResponse({ message: "Profiles cleared" });
   }
 });

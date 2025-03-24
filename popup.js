@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const processBtn = document.getElementById("processUrls");
   const showProfilesBtn = document.getElementById("showProfiles");
   const copyBtn = document.getElementById("copyToClipboard");
+  const clearBtn = document.getElementById("clearProfiles");
   const output = document.getElementById("output");
 
   // Handle URL processing
@@ -45,5 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(() => {
         output.innerText = "Failed to copy to clipboard";
       });
+  });
+
+  // Handle clearing profiles
+  clearBtn.addEventListener("click", () => {
+    chrome.runtime.sendMessage({ action: "clearProfiles" }, (response) => {
+      output.innerText = "All profiles cleared";
+      copyBtn.disabled = true;
+    });
   });
 });
