@@ -1,5 +1,6 @@
 let profiles = [];
 let processing = false;
+const DEFAULT_DELAY = 5000; // 5 seconds
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "storeProfile") {
@@ -30,7 +31,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           if (tabId === tab.id && changeInfo.status === 'complete') {
             chrome.tabs.onUpdated.removeListener(listener);
             currentIndex++;
-            processNextUrl();
+            setTimeout(processNextUrl, DEFAULT_DELAY);
           }
         });
       });
