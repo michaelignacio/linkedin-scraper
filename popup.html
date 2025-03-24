@@ -2,10 +2,39 @@
 <html lang="en">
 <head>
   <title>LinkedIn Scraper</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    textarea {
+      width: 100%;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+    #output {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 5px;
+      margin-top: 10px;
+    }
+  </style>
   <script src="popup.js" defer></script>
 </head>
 <body>
+  <textarea id="urls" placeholder="Enter LinkedIn profile URLs, one per line"></textarea>
+  <button id="processUrls">Process URLs</button>
   <button id="showProfiles">Show Extracted Profiles</button>
+  <button id="copyToClipboard" disabled>Copy to Clipboard</button>
   <pre id="output"></pre>
 </body>
 </html>
