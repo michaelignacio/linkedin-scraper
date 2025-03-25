@@ -13,12 +13,12 @@ PARAMETER=$1
 jq --arg param "$PARAMETER" 'map(
   if .photo and (.photo | startswith("data:") | not) then
     .photo = "core/images/future_government_institute/\($param)/\(
-      .name | 
-      ascii_downcase | 
-      gsub("[^a-z0-9]"; "-") | 
-      gsub("-+"; "-") | 
+      .name |
+      ascii_downcase |
+      gsub("[^a-z0-9]"; "-") |
+      gsub("-+"; "-") |
       sub("-+$"; "")
-    )"
+    ).jpg"
   else
     .
   end

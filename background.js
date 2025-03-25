@@ -1,6 +1,6 @@
 let profiles = [];
 let processing = false;
-const DEFAULT_DELAY = 5000; // 5 seconds
+const DEFAULT_DELAY = 3000; // 3 seconds
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "storeProfile") {

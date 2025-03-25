@@ -1,1 +1,4 @@
 data.json
+.gitignore
+display-photos
+.DS_Store
