@@ -20,12 +20,26 @@ A Chrome extension that extracts LinkedIn profile information including name, pr
 
 ## Script Functionality
 The `download_images.sh` script:
+- Takes a folder name as parameter
+- Creates the folder inside display-photos directory
 - Takes a JSON array of profile data
 - Processes each profile to:
   - Extract name and photo URL
   - Create a URL-safe slug from the name
-  - Download the profile photo using curl
+  - Download the profile photo into the specified folder using curl
 - Requires `jq` for JSON processing
+
+## Workflow
+
+```mermaid
+graph TD
+    A[Input: Folder Name] --> B[Create Folder in display-photos]
+    C[Input: data.json] --> D[Process JSON Data]
+    D --> E[Extract Name & Photo URL]
+    E --> F[Create URL-safe Slug]
+    F --> G[Download Photo to Folder]
+    G --> H[Output: Downloaded Images]
+```
 
 ## Requirements
 - Chrome browser
