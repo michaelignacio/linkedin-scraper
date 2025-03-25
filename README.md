@@ -33,12 +33,18 @@ The `download_images.sh` script:
 
 ```mermaid
 graph TD
-    A[Input: Folder Name] --> B[Create Folder in display-photos]
-    C[Input: data.json] --> D[Process JSON Data]
-    D --> E[Extract Name & Photo URL]
-    E --> F[Create URL-safe Slug]
-    F --> G[Download Photo to Folder]
-    G --> H[Output: Downloaded Images]
+    A[User Visits LinkedIn Profile] --> B[Browser Extension Activates]
+    B --> C[Scrape Profile Data]
+    C --> D[Save to data.json]
+    D --> E[Run download_images.sh]
+    E --> F[Input: Folder Name]
+    F --> G[Create Folder in display-photos]
+    E --> H[Input: data.json]
+    H --> I[Process JSON Data]
+    I --> J[Extract Name & Photo URL]
+    J --> K[Create URL-safe Slug]
+    K --> L[Download Photo to Folder]
+    L --> M[Output: Downloaded Images]
 ```
 
 ## Requirements
