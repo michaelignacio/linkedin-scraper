@@ -16,8 +16,23 @@ cat data.json | jq -c '.[]' | while read -r obj; do
   # Sluggify the name (convert to lowercase, replace spaces with dashes, remove special chars)
   slug=$(echo "$name" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed 's/[^a-z0-9-]//g')
 
-  # Download the image using curl into the specified folder
-  curl -s -o "$1/${slug}.jpg" "$photo"
+  # Skip base64 encoded images
+  if [[ "$photo" == data:* ]]; then
+    echo "Skipping base64 image for: $name"
+    continue
+  fi
 
-  echo "Downloaded: $1/${slug}.jpg"
+  # Skip if photo is not a valid URL
+  if [[ "$photo" != http* ]]; then
+    echo "Skipping invalid URL: $photo"
+    continue
+  fi
+
+  # Download the image using curl into the specified folder
+  if curl -s -L -o "display-photos/$1/${slug}.jpg" "$photo"; then
+    echo "Downloaded: $1/${slug}.jpg"
+  else
+    echo "Failed to download: $1/${slug}.jpg"
+    rm -f "display-photos/$1/${slug}.jpg"
+  fi
 done
